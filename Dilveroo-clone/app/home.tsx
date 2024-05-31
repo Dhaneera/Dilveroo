@@ -51,20 +51,20 @@ const Home = () => {
                  <Categories/>
                   {/* features */}
                   <FeaturedRow
+                    id='1'
                     title='Featured'
                     description="paid placment"
-                    featuredCategory="fetured"
-                  />
+                    />
                   <FeaturedRow
+                    id='2'
                     title='Featured'
                     description="paid placment"
-                    featuredCategory="fetured"
-                  />
+                    />
                   <FeaturedRow
+                  id='3'
                     title='Featured'
                     description="paid placment"
-                    featuredCategory="fetured"
-                  />
+                    />
             </ScrollView>
         </SafeAreaView>
     )
