@@ -22,7 +22,8 @@ export default{
       name: 'resturants',
       title: 'Resturants',
       type: 'array',
-      of:[{type:'reference',to:[{type:'resturant'}]}]
+      of:[{type:'reference',
+      to:[{type:'resturant'}]}]
     },
   ],
 }
