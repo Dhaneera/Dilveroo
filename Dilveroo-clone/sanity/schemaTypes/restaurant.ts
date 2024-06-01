@@ -2,13 +2,13 @@ import { title } from 'process'
 import {defineField, defineType, validation} from 'sanity'
 
 export default {
-  name: 'resturant',
-  title: 'Resturant',
+  name: 'restaurant',
+  title: 'Restaurant',
   type: 'document',
   fields: [
     {
       name: 'name',
-      title: 'Resturant name',
+      title: 'Resaturant name',
       type: 'string',
       validation: (Rule: { required: () => any; }) => Rule.required(),
     },

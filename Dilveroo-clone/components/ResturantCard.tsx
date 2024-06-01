@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, Pressable } from 'react-native'
 import React from 'react'
 import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
@@ -20,7 +20,7 @@ interface ResturanCardsProps {
 const ResturantCard: React.FC<ResturanCardsProps> = ({ imgUrl, title, rating, genre,address }) => {
 
     return (
-        <TouchableOpacity className='bg-white mr-3 shadow'>
+        <Pressable className='bg-white mr-3 shadow'>
             <Image
                 source={{
                     uri: imgUrl,
@@ -41,7 +41,7 @@ const ResturantCard: React.FC<ResturanCardsProps> = ({ imgUrl, title, rating, ge
                     <Text className=' text-xs text-gray-500'>Nearby . {address}</Text>
                 </View>
             </View>
-        </TouchableOpacity>
+        </Pressable>
     )
 }
 

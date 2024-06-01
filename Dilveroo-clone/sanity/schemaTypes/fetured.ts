@@ -1,5 +1,5 @@
 import {defineField, defineType, validation} from 'sanity'
-import resturant from './resturant'
+import restaurant from './restaurant'
 
 export default{
   name: 'fetured',
@@ -19,11 +19,10 @@ export default{
       validation: (Rule: { max: (arg0: number) => any })=> Rule.max(200)
     },
     {
-      name: 'resturants',
-      title: 'Resturants',
+      name: 'restaurant',
+      title: 'Restaurant',
       type: 'array',
-      of:[{type:'reference',
-      to:[{type:'resturant'}]}]
+      of:[{type:'reference',to:[{type:'restaurant'}]}]
     },
   ],
 }

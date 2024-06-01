@@ -5,7 +5,7 @@ import ResturantCard from './ResturantCard';
 interface FeturedROwProps {
     title: string;
     description: string
-    id: string
+    id: number
 }
 
 const FeaturedRow: React.FC<FeturedROwProps> = ({ id, title, description }) => {
