@@ -3,9 +3,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 import 'react-native-reanimated';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import home from './Home';
 import Restaurant from '../app/Restaurant';
-
+import Home from './home';
 
 
 export type RootStackParamList = {
@@ -37,8 +36,9 @@ const RootLayout :React.FC=()=> {
   return (
     
     <Stack.Navigator>
-      <Stack.Screen name='Home' component={home} />
+      <Stack.Screen name='home' component={Home} />
       <Stack.Screen name='Restaurant' component={Restaurant} />
+      
     </Stack.Navigator>
   );
 }

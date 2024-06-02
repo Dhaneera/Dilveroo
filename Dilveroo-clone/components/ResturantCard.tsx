@@ -4,6 +4,7 @@ import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
 import { green } from 'react-native-reanimated/lib/typescript/reanimated2/Colors'
 import { urlFor } from '@/sanity'
+import { useNavigation } from 'expo-router'
 
 interface ResturanCardsProps {
     id: number
@@ -18,10 +19,37 @@ interface ResturanCardsProps {
     lat: number
 }
 
-const ResturantCard: React.FC<ResturanCardsProps> = ({ imgUrl, title, rating, genre,address }) => {
+const ResturantCard: React.FC<ResturanCardsProps> = ({
+    id,
+    title,
+    imgUrl,
+    rating,
+    genre,
+    address,
+    short_description,
+    dishes,
+    long,
+    lat
+}) => {
+    const navigation =useNavigation()
+
+    const handlePress =()=>{
+        navigation.navigate('Restaurant',{
+            id:id,
+            title:title,
+            imgUrl:imgUrl,
+            rating:rating,
+            genre:genre,
+            address:address,
+            short_description:short_description,
+            dishes:dishes,
+            long:long,
+            lat:lat
+        })
+    }
 
     return (
-        <TouchableOpacity className='bg-white mr-3 shadow'>
+        <TouchableOpacity className='bg-white mr-3 shadow' onPress={handlePress}>
             <Image
                 source={{
                     uri: urlFor( imgUrl),
