@@ -1,31 +1,61 @@
 import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CategoryCard from './CategortyCard'
+import client, { urlFor } from '@/sanity';
 
 
 
 const Categories: React.FC = () => {
-    return (
-      <ScrollView
-        contentContainerStyle={{
-          paddingHorizontal:2,
-          paddingTop: 10,
-        }}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      >
-        {/* CategoryCard */}
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-        <CategoryCard  imgUrl="https://links.papareact.com/gn7" title="hey"/>
-      </ScrollView>
-    );
+
+  const [categorey, setCategorey] = useState([])
+  const [reload, setReload] = useState(false)
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const result = await client.fetch(`
+        *[_type == "Category"]{
+          ...
+        }
+        `).then((data) => {
+          setCategorey(data)
+        })
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    }
+    fetch()
+  }, [reload])
+
+
+  const triggerReload = () => {
+    setReload(!reload)
   };
-  
-  export default Categories;
+  console.log(categorey);
+
+
+  return (
+    <ScrollView
+      contentContainerStyle={{
+        paddingHorizontal: 2,
+        paddingTop: 10,
+      }}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+    >
+      {/* CategoryCard */}
+      {categorey.length > 0 ? (
+        categorey.map(categorey => (
+          <CategoryCard
+            imgUrl={urlFor(categorey.image)}
+            title={categorey.name}
+          />
+        ))
+      ) : (
+        <Text>Loading...</Text>
+      )}
+    </ScrollView>
+  );
+};
+
+export default Categories;

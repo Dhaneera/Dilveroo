@@ -3,6 +3,7 @@ import React from 'react'
 import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
 import { green } from 'react-native-reanimated/lib/typescript/reanimated2/Colors'
+import { urlFor } from '@/sanity'
 
 interface ResturanCardsProps {
     id: number
@@ -23,7 +24,7 @@ const ResturantCard: React.FC<ResturanCardsProps> = ({ imgUrl, title, rating, ge
         <Pressable className='bg-white mr-3 shadow'>
             <Image
                 source={{
-                    uri: imgUrl,
+                    uri: urlFor( imgUrl),
                 }}
                 className='h-36 w-64 rounded-sm'
             />

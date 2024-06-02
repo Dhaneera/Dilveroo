@@ -8,15 +8,15 @@ import client from '../sanity';
 import category from '@/sanity/schemaTypes/category';
 
 
-
-const Home:React.FC = () => {
+const Home: React.FC = () => {
     const navigation = useNavigation()
+
 
     const [featuredCategories, setFeaturedCategories] = useState([])
     const [reload, setReload] = useState(false)
 
-  
 
+    
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
@@ -24,7 +24,7 @@ const Home:React.FC = () => {
     }, [])
 
     useEffect(() => {
-         const fetchData =  async () => {
+        const fetchData = async () => {
             try {
                 const result = await client.fetch(`
                 *[_type == "fetured"]{
@@ -34,26 +34,26 @@ const Home:React.FC = () => {
                       ...,
                       dishes[]->
                     }
-                  }`);
-                setFeaturedCategories(result);
-                
-                
+                  }`).then((result)=>{
+                        setFeaturedCategories(result)
+                  })
+
+
             } catch (error) {
                 console.error("Error fetching data: ", error);
             }
         }
         fetchData();
-    
-        
+
     }, [reload])
 
     const triggerReload = () => {
         setReload(!reload)
     };
-    
+
     console.log(featuredCategories);
 
-    
+
     return (
         <SafeAreaView className=' bg-white pt-5'>
             {/* viewstart */}
@@ -89,18 +89,18 @@ const Home:React.FC = () => {
                 {/* categorey */}
                 <Categories />
                 {/* features */}
-   {featuredCategories.length > 0 ? (
-                featuredCategories.map(category => (
-                    <FeaturedRow
-                        key={category._id}
-                        id={category._id}
-                        title={category.name}
-                        description={category.short_description}
-                    />
-                ))
-            ) : (
-                <Text>Loading...</Text>
-            )}
+                {featuredCategories.length > 0 ? (
+                    featuredCategories.map(category => (
+                        <FeaturedRow
+                            key={category._id}
+                            id={category._id}
+                            title={category.name}
+                            description={category.short_description}
+                        />
+                    ))
+                ) : (
+                    <Text>Loading...</Text>
+                )}
             </ScrollView>
         </SafeAreaView>
     )

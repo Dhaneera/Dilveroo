@@ -1,7 +1,8 @@
 import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowRightIcon } from 'react-native-heroicons/solid';
 import ResturantCard from './ResturantCard';
+import client from '@/sanity';
 interface FeturedROwProps {
     title: string;
     description: string
@@ -9,6 +10,43 @@ interface FeturedROwProps {
 }
 
 const FeaturedRow: React.FC<FeturedROwProps> = ({ id, title, description }) => {
+
+    const[restaurant,setRestaurant]=useState([])
+    const [reload, setReload] = useState(false)
+
+
+    useEffect(()=>{
+        const fetch = async ()=>{
+            try {
+                const result = await client.fetch(`
+                *[_type == "fetured" && _id == $id]{
+                    ...,
+                  restaurant[]->{
+                    ...,
+                    dish[]->,
+                      type->{
+                        name
+                      }
+                  },
+                }[0]
+                `,{id}).then((result)=>{
+                    setRestaurant(result?result.restaurant:null)
+                })    
+            } catch (error) {
+                console.error("Error fetching data: ", error);
+            }
+        }
+        fetch();
+    },[reload])
+
+    const triggerReload = () => {
+        setReload(!reload)
+    };
+
+
+  
+    
+    
     return (
         <View>
             <View className='mt-4 flex-row items-center justify-between px-4'>
@@ -24,71 +62,24 @@ const FeaturedRow: React.FC<FeturedROwProps> = ({ id, title, description }) => {
                 showsHorizontalScrollIndicator={false}
                 className='pt-4'
             >
-            <ResturantCard
-             id={123}
-             title='Yo Shushi'
-             imgUrl='https://links.papareact.com/gn7'
-             rating={4.5}
-             genre='japanese'
-             address='mount-Lavinia'
-             short_description='this is a short description'
-             dishes={[]}
-             long={20}
-             lat={0}
-            
-            />
-            <ResturantCard
-             id={123}
-             title='Yo Shushi'
-             imgUrl='https://links.papareact.com/gn7'
-             rating={4.5}
-             genre='japanese'
-             address='mount-Lavinia'
-             short_description='this is a short description'
-             dishes={[]}
-             long={20}
-             lat={0}
-            
-            />
-            <ResturantCard
-             id={123}
-             title='Yo Shushi'
-             imgUrl='https://links.papareact.com/gn7'
-             rating={4.5}
-             genre='japanese'
-             address='mount-Lavinia'
-             short_description='this is a short description'
-             dishes={[]}
-             long={20}
-             lat={0}
-            
-            />
-            <ResturantCard
-             id={123}
-             title='Yo Shushi'
-             imgUrl='https://links.papareact.com/gn7'
-             rating={4.5}
-             genre='japanese'
-             address='mount-Lavinia'
-             short_description='this is a short description'
-             dishes={[]}
-             long={20}
-             lat={0}
-            
-            />
-            <ResturantCard
-             id={123}
-             title='Yo Shushi'
-             imgUrl='https://links.papareact.com/gn7'
-             rating={4.5}
-             genre='japanese'
-             address='mount-Lavinia'
-             short_description='this is a short description'
-             dishes={[]}
-             long={20}
-             lat={0}
-            
-            />
+                {restaurant.length > 0 ? (
+                    restaurant.map(restaurant => (
+                        <ResturantCard
+                        id={restaurant.id}
+                        title={restaurant.name}
+                        imgUrl={restaurant.image.asset._ref}
+                        rating={4.5}
+                        genre={restaurant.type?.name}
+                        address={restaurant.address}
+                        short_description={restaurant.short_description}
+                        dishes={restaurant.dishes}
+                        long={restaurant.long}
+                        lat={restaurant.lat}
+                        />
+                    ))
+                ) : (
+                    <Text>Loading...</Text>
+                )}
             </ScrollView>
         </View>
 
