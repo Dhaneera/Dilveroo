@@ -21,7 +21,7 @@ interface ResturanCardsProps {
 const ResturantCard: React.FC<ResturanCardsProps> = ({ imgUrl, title, rating, genre,address }) => {
 
     return (
-        <Pressable className='bg-white mr-3 shadow'>
+        <TouchableOpacity className='bg-white mr-3 shadow'>
             <Image
                 source={{
                     uri: urlFor( imgUrl),
@@ -42,7 +42,7 @@ const ResturantCard: React.FC<ResturanCardsProps> = ({ imgUrl, title, rating, ge
                     <Text className=' text-xs text-gray-500'>Nearby . {address}</Text>
                 </View>
             </View>
-        </Pressable>
+        </TouchableOpacity>
     )
 }
 
