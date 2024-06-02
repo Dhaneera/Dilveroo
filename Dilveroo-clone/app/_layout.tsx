@@ -3,7 +3,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 import 'react-native-reanimated';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import home from '../app/home';
+import home from './home';
 
 
 
@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-const app :React.FC=()=> {
+const RootLayout :React.FC=()=> {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -37,10 +37,10 @@ const app :React.FC=()=> {
   return (
     
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={home} />
+      <Stack.Screen name='home' component={home} />
     </Stack.Navigator>
   );
 }
 
-export default app
+export default RootLayout
 
