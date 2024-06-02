@@ -5,7 +5,6 @@ import { UserIcon, ChevronDownIcon, AdjustmentsVerticalIcon, MagnifyingGlassIcon
 import Categories from '@/components/Categories';
 import FeaturedRow from '@/components/FeaturedRow';
 import client from '../sanity';
-import category from '@/sanity/schemaTypes/category';
 
 
 const Home: React.FC = () => {
