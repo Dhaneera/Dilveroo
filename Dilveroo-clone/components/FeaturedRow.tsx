@@ -19,14 +19,12 @@ const FeaturedRow: React.FC<FeturedROwProps> = ({ id, title, description }) => {
         const fetch = async ()=>{
             try {
                 const result = await client.fetch(`
-                *[_type == "fetured" && _id == $id]{
+              *[_type == "fetured" && _id == $id]{
                     ...,
                   restaurant[]->{
                     ...,
-                    dish[]->,
-                      type->{
-                        name
-                      }
+                    dishes[]->,
+                     name
                   },
                 }[0]
                 `,{id}).then((result)=>{
