@@ -4,7 +4,8 @@ import React, { useEffect } from 'react';
 import 'react-native-reanimated';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import home from './home';
-
+import Restaurant from './Restaurant';
+import Home from './home';
 
 
 
@@ -37,7 +38,8 @@ const RootLayout :React.FC=()=> {
   return (
     
     <Stack.Navigator>
-      <Stack.Screen name='home' component={home} />
+      <Stack.Screen name='Home' component={Home} />
+      <Stack.Screen name='Restaurant' component={Restaurant} />
     </Stack.Navigator>
   );
 }
