@@ -77,7 +77,7 @@ const Home: React.FC = () => {
             <View className=' flex-row items-center space-x-2 pb-2 mx-4'>
                 <View className=' flex-row flex-1 space-x-2 bg-gray-200 p-3'>
                     <MagnifyingGlassIcon color='#00CCBB' />
-                    <TextInput placeholder='Resturants and Cuisines' keyboardType='default' />
+                    <TextInput placeholder=' Search Resturants and Cuisines'/>
                 </View>
                 <AdjustmentsVerticalIcon color='#00CCBB' />
             </View>
