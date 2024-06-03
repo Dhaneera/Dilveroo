@@ -35,14 +35,14 @@ const RootLayout: React.FC = () => {
   }
 
   return (
-    <NavigationContainer>
+    // <NavigationContainer>
         <Provider store={store}>
       <Stack.Navigator>
         <Stack.Screen name='home' component={Home} />
         <Stack.Screen name='Restaurant' component={Restaurant} />
       </Stack.Navigator>
     </Provider>
-    </NavigationContainer>
+    // </NavigationContainer>
     
 
   );

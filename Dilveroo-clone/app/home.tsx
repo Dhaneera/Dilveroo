@@ -7,12 +7,18 @@ import FeaturedRow from '@/components/FeaturedRow';
 import client from '../sanity';
 
 
-const Home = () => {
+interface FeaturedCategory {
+    _id: string;
+    name: string;
+    short_description: string;
+  }
+
+const Home:React.FC = () => {
     const navigation = useNavigation()
 
 
-    const [featuredCategories, setFeaturedCategories] = useState([])
-    const [reload, setReload] = useState(false)
+    const [featuredCategories, setFeaturedCategories] = useState<FeaturedCategory[]>([])
+    const [reload, setReload] = useState<Boolean>(false)
 
 
     

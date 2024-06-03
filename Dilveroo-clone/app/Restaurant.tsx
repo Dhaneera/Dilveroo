@@ -2,10 +2,19 @@ import { View, Text, ScrollView, Image, Pressable, TouchableOpacity } from 'reac
 import React, { useLayoutEffect } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { urlFor } from '@/sanity';
-import { ArrowLeftIcon,ChevronRightIcon,MapIcon,MapPinIcon,QuestionMarkCircleIcon,StarIcon } from 'react-native-heroicons/solid';
+import { ArrowLeftIcon,ChevronRightIcon,MapPinIcon,QuestionMarkCircleIcon,StarIcon } from 'react-native-heroicons/solid';
 import DishRow from '@/components/DishRow';
 
-const Restaurant = () => {
+
+interface Dish {
+  _id: string;
+  name: string;
+  short_description: string;
+  price: number;
+  image: string;
+}
+
+const Restaurant:React.FC = () => {
 
   const navigation = useNavigation()
 
@@ -21,7 +30,7 @@ const Restaurant = () => {
     genre: string;
     address: string;
     short_description: string;
-    dishes: string[];
+    dishes: Dish[];
     long: number;
     lat: number;
 };

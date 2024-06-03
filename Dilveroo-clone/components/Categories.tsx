@@ -4,10 +4,16 @@ import CategoryCard from './CategortyCard'
 import client, { urlFor } from '@/sanity';
 
 
+interface Category {
+  _id: string;
+  name: string;
+  image: string;
+}
 
 const Categories: React.FC = () => {
 
-  const [categorey, setCategorey] = useState([])
+
+  const [categorey, setCategorey] = useState<Category[]>([])
   const [reload, setReload] = useState(false)
 
   useEffect(() => {
@@ -47,6 +53,7 @@ const Categories: React.FC = () => {
       {categorey.length > 0 ? (
         categorey.map(categorey => (
           <CategoryCard
+            key={categorey._id}
             imgUrl={urlFor(categorey.image)}
             title={categorey.name}
           />

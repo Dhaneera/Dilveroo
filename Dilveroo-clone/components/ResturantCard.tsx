@@ -1,13 +1,13 @@
-import { View, Text, TouchableOpacity, Image, Pressable } from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { StarIcon } from 'react-native-heroicons/solid'
 import { MapPinIcon } from 'react-native-heroicons/outline'
-import { green } from 'react-native-reanimated/lib/typescript/reanimated2/Colors'
 import { urlFor } from '@/sanity'
 import { useNavigation } from 'expo-router'
-
+import { RootStackParamList } from '@/app/_layout'
+import {NativeStackNavigationProp}  from '@react-navigation/native-stack';
 interface ResturanCardsProps {
-    id: number
+    id: string
     title: string;
     imgUrl: string
     rating: number
@@ -31,7 +31,7 @@ const ResturantCard: React.FC<ResturanCardsProps> = ({
     long,
     lat
 }) => {
-    const navigation =useNavigation()
+    const navigation =useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
     const handlePress =()=>{
         navigation.navigate('Restaurant',{

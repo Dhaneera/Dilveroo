@@ -6,12 +6,46 @@ import client from '@/sanity';
 interface FeturedROwProps {
     title: string;
     description: string
-    id: number
+    id: string
 }
+interface Image {
+    asset: {
+      _ref: string;
+    };
+    
+  }
+
+  interface Type {
+    name: string;
+
+  }
+
+  interface Dish {
+    _id: string;
+    name: string;
+    price: number;
+    image: Image;
+    type: Type;
+
+  }
+  
+interface Restaurant {
+    id: string;
+    name: string;
+    image: Image;
+    type?: Type;
+    address: string;
+    short_description: string;
+    dishes: string[]
+    long: number;
+    lat: number;
+  }
+  
+
 
 const FeaturedRow: React.FC<FeturedROwProps> = ({ id, title, description }) => {
 
-    const[restaurant,setRestaurant]=useState([])
+    const[restaurant,setRestaurant]=useState<Restaurant[]>([])
     const [reload, setReload] = useState(false)
 
 
@@ -63,6 +97,7 @@ const FeaturedRow: React.FC<FeturedROwProps> = ({ id, title, description }) => {
                 {restaurant.length > 0 ? (
                     restaurant.map(restaurant => (
                         <ResturantCard
+                        key={restaurant.id}
                         id={restaurant.id}
                         title={restaurant.name}
                         imgUrl={restaurant.image.asset._ref}
