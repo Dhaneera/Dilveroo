@@ -7,7 +7,7 @@ import FeaturedRow from '@/components/FeaturedRow';
 import client from '../sanity';
 
 
-const Home: React.FC = () => {
+const Home = () => {
     const navigation = useNavigation()
 
 
