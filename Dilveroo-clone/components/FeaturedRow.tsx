@@ -102,7 +102,7 @@ const FeaturedRow: React.FC<FeturedROwProps> = ({ id, title, description }) => {
                         title={restaurant.name}
                         imgUrl={restaurant.image.asset._ref}
                         rating={4.5}
-                        genre={restaurant.type?.name}
+                        genre={restaurant.type?.name||''}
                         address={restaurant.address}
                         short_description={restaurant.short_description}
                         dishes={restaurant.dishes}
