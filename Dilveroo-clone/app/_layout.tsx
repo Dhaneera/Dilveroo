@@ -7,7 +7,8 @@ import Restaurant from '../app/Restaurant';
 import Home from './home';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
+import Basket from './Basket';
+import { Pressable } from 'react-native';
 export type RootStackParamList = {
   Home: undefined;
   Restaurant: { id: string }; // Add more screens and their params here
@@ -38,8 +39,9 @@ const RootLayout: React.FC = () => {
     // <NavigationContainer>
         <Provider store={store}>
       <Stack.Navigator>
-        <Stack.Screen name='home' component={Home} />
+        <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Restaurant' component={Restaurant} />
+        <Stack.Screen name='Basket' component={Basket} options={{presentation:'modal', headerShown:false}}/>
       </Stack.Navigator>
     </Provider>
     // </NavigationContainer>

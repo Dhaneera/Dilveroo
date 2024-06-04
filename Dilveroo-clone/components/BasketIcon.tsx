@@ -26,7 +26,8 @@ const BasketIcon:React.FC = () => {
   const basketTotal = useSelector(selectBasketTotal)
   return (
     <View className=' absolute bottom-10 w-full z-50'>
-      <TouchableOpacity className=' mx-5 bg-[#00CCBB] p-4 flex-row items-center space-x-1'>
+      <TouchableOpacity className=' mx-5 bg-[#00CCBB] p-4 flex-row items-center space-x-1'
+      onPress={() => navigation.navigate('Basket')}>
         <Text className='bg-[#01A296] text-white py-1 px-2'>{items.length}</Text>
         <Text className=' flex-1 text-lg text-white font-extrabold text-center'>View Basket</Text>
         <Text className='text-lg text-white font-extrabold'>
