@@ -8,9 +8,9 @@ import { RootStackParamList } from '@/app/_layout'
 import {NativeStackNavigationProp}  from '@react-navigation/native-stack';
 interface ResturanCardsProps {
     id: string
-    title: string;
-    imgUrl: string
-    rating: number
+    title?: string;
+    imgUrl?: string
+    rating?: number
     genre: string
     address: string
     short_description: string

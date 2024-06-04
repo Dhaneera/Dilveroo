@@ -1,9 +1,12 @@
 import { View, Text, Image, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import Currency from 'react-currency-formatter'
 import { urlFor } from '@/sanity'
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToBasket, slectBasketItems } from '@/features/counter/busketSlice'
+import { RootState } from '@/app/store'
 interface DishRowProps {
     id: string
     title: string
@@ -16,10 +19,22 @@ interface DishRowProps {
 const DishRow: React.FC<DishRowProps> = ({ id, title, description, price, image }) => {
 
     const [isPressed, setIsPressed] = useState(false)
-    // const [reload, setReload] = useState(false)
+    
+    const dispatch = useDispatch()
 
 
+    const items =useSelector((state:RootState)=>slectBasketItems(state))
+    
 
+
+    const addItemToBasket =()=>{
+        dispatch(addToBasket({id,title,description,price,image}))
+    
+    }
+
+ 
+
+    
     return (
         <>
             <TouchableOpacity onPress={() => setIsPressed(!isPressed)}
@@ -47,8 +62,8 @@ const DishRow: React.FC<DishRowProps> = ({ id, title, description, price, image 
                         <TouchableOpacity>
                             <MinusCircleIcon size={40} color="#00CCBB" />
                         </TouchableOpacity>
-                        <Text>1</Text>
-                        <TouchableOpacity>
+                        <Text>{items.length}</Text>
+                        <TouchableOpacity onPress={addItemToBasket}>
                             <PlusCircleIcon size={40} color="#00CCBB" />
                         </TouchableOpacity>
                     </View>
