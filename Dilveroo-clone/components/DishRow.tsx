@@ -5,7 +5,7 @@ import Currency from 'react-currency-formatter'
 import { urlFor } from '@/sanity'
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/solid'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToBasket, slectBasketItems } from '@/features/counter/busketSlice'
+import { addToBasket, removeFromBasket, selectBasketItems, selectBasketItemWithId } from '@/features/counter/busketSlice'
 import { RootState } from '@/app/store'
 interface DishRowProps {
     id: string
@@ -19,22 +19,21 @@ interface DishRowProps {
 const DishRow: React.FC<DishRowProps> = ({ id, title, description, price, image }) => {
 
     const [isPressed, setIsPressed] = useState(false)
-    
     const dispatch = useDispatch()
 
 
-    const items =useSelector((state:RootState)=>slectBasketItems(state))
-    
-
+    const items = useSelector((state:RootState)=>selectBasketItemWithId(state,id))
 
     const addItemToBasket =()=>{
         dispatch(addToBasket({id,title,description,price,image}))
     
     }
+    const removeItemFromBasket=()=>{
+        if(!items.length)return
+        dispatch(removeFromBasket({id,title,description,price,image}))
+    }
 
- 
-
-    
+     
     return (
         <>
             <TouchableOpacity onPress={() => setIsPressed(!isPressed)}
@@ -59,8 +58,11 @@ const DishRow: React.FC<DishRowProps> = ({ id, title, description, price, image 
             {isPressed && (
                 <View className='px-4'>
                     <View className=' flex-row items-center space-x-2 pb-3'>
-                        <TouchableOpacity>
-                            <MinusCircleIcon size={40} color="#00CCBB" />
+                        <TouchableOpacity onPress={removeItemFromBasket}>
+                            <MinusCircleIcon
+                            size={40} 
+                            color={items.length>0?'#00CCBB':'gray'}
+                            disabled={items.length?true:false} />
                         </TouchableOpacity>
                         <Text>{items.length}</Text>
                         <TouchableOpacity onPress={addItemToBasket}>
@@ -71,7 +73,6 @@ const DishRow: React.FC<DishRowProps> = ({ id, title, description, price, image 
                 </View>
             )}
         </>
-
     )
 }
 

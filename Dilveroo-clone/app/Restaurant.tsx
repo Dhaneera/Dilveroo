@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { urlFor } from '@/sanity';
 import { ArrowLeftIcon,ChevronRightIcon,MapPinIcon,QuestionMarkCircleIcon,StarIcon } from 'react-native-heroicons/solid';
 import DishRow from '@/components/DishRow';
+import BasketIcon from '@/components/BasketIcon';
 
 
 interface Dish {
@@ -45,6 +46,8 @@ console.log(dishes);
 
 
   return (
+    <>
+    <BasketIcon/>
     <ScrollView>
       <View className='relative'>
         <Image
@@ -101,6 +104,7 @@ console.log(dishes);
         </View>
       </View>
     </ScrollView>
+    </>
   )
 }
 
