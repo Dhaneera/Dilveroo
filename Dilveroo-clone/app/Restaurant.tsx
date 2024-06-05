@@ -1,10 +1,13 @@
 import { View, Text, ScrollView, Image, Pressable, TouchableOpacity } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { urlFor } from '@/sanity';
-import { ArrowLeftIcon,ChevronRightIcon,MapPinIcon,QuestionMarkCircleIcon,StarIcon } from 'react-native-heroicons/solid';
+import {ChevronRightIcon,MapPinIcon,QuestionMarkCircleIcon,StarIcon } from 'react-native-heroicons/solid';
+import{ArrowLeftCircleIcon}from 'react-native-heroicons/outline'
 import DishRow from '@/components/DishRow';
 import BasketIcon from '@/components/BasketIcon';
+import { useDispatch } from 'react-redux';
+import { setRestaurant } from '@/features/counter/restaurantSlice';
 
 
 interface Dish {
@@ -19,7 +22,7 @@ const Restaurant:React.FC = () => {
 
   const navigation = useNavigation()
 
-
+  const dispatch = useDispatch()
   const route = useRoute();
 
   const { id,title,imgUrl,rating,genre,address,short_description,dishes,long,lat,} = route.params as {
@@ -31,16 +34,32 @@ const Restaurant:React.FC = () => {
     genre: string;
     address: string;
     short_description: string;
-    dishes: Dish[];
+    dishes: string[];
     long: number;
     lat: number;
 };
+
+useEffect(()=>{
+  dispatch(
+    setRestaurant({
+      id,
+      title,
+      imgUrl,
+      rating,
+      genre,
+      address,
+      short_description,
+      dishes,
+    })
+  )
+},[dispatch])
 
 useLayoutEffect(() => {
   navigation.setOptions({
       headerShown: false,
   })
 }, [])
+
 
 console.log(dishes);
 
@@ -57,7 +76,7 @@ console.log(dishes);
             className=' w-full h-56 bg-gray-300 p-4'
         />
         <Pressable onPress={navigation.goBack} className=' absolute top-14 left-5  bg-gray-100 rounded-full'>
-          <ArrowLeftIcon size={23} color='#00CCBB'/>
+          <ArrowLeftCircleIcon size={30} color='#00CCBB'/>
         </Pressable>
       </View>
       <View className=' bg-white'>
@@ -109,3 +128,7 @@ console.log(dishes);
 }
 
 export default Restaurant
+
+function dispatch() {
+  throw new Error('Function not implemented.');
+}

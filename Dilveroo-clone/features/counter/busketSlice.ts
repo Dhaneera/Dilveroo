@@ -36,14 +36,11 @@ export const busketSlice = createSlice({
       }
       state.items = newBasket
     },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action:PayloadAction<BasketItem>) => {
 
-    }
   }
 })
 
-export const { addToBasket,removeFromBasket, incrementByAmount } = busketSlice.actions
+export const { addToBasket,removeFromBasket } = busketSlice.actions
 export const selectBasketItems = (state:any)=> state.basket.items
 export const selectBasketItemWithId = (state:RootState, id: string) =>state.basket.items.filter((item: { id: string }) => item.id === id)
 export const selectBasketTotal =(state:RootState):number=>state.basket.items.reduce((total,item) => total+item.price,0)

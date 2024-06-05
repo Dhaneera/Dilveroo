@@ -24,6 +24,10 @@ const BasketIcon:React.FC = () => {
     
   const items:BasketItem[]= useSelector(selectBasketItems)
   const basketTotal = useSelector(selectBasketTotal)
+
+  if(items.length === 0)return null
+
+
   return (
     <View className=' absolute bottom-10 w-full z-50'>
       <TouchableOpacity className=' mx-5 bg-[#00CCBB] p-4 flex-row items-center space-x-1'
