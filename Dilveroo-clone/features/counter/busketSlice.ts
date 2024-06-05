@@ -35,6 +35,7 @@ export const busketSlice = createSlice({
         console.warn(`Cant remove product (id: ${action.payload.id}as its not in a basket`)
       }
       state.items = newBasket
+      
     },
 
   }

@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, TouchableOpacity,Image, ScrollView } from 'react-native'
-import React, { useLayoutEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useNavigation } from 'expo-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectRestaurant } from '@/features/counter/restaurantSlice'
@@ -25,6 +25,8 @@ const Basket: React.FC = () => {
     const [groupedItemsInBasket, setGroupItemsInBasket] = useState<({id:string ,item:BasketItem})[]>([])
     const basketTotal=useSelector(selectBasketTotal)
     const dispatch = useDispatch()
+
+
 
     useMemo(() => {
         const groupedItems = items.reduce((results:Record<string,BasketItem[]|undefined>,item:BasketItem) => {
@@ -69,7 +71,13 @@ const Basket: React.FC = () => {
                                 <Currency quantity={items[0]?.price} currency='GBP'></Currency>
                             </Text>
                             <TouchableOpacity>
-                                <Text className='text-[#00CCBB]' onPress={()=>dispatch(removeFromBasket({id:key}))}> Remove
+                                <Text className='text-[#00CCBB]' onPress={()=>dispatch(removeFromBasket({
+                                    id: key,
+                                    title: '',
+                                    description: '',
+                                    price: 0,
+                                    image: ''
+                                }))}> Remove
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -100,7 +108,9 @@ const Basket: React.FC = () => {
                         </Text>
                     </View>
                     <TouchableOpacity className=' rounded-lg bg-[#00CCBB] P-4 py-4'>
-                        <Text className=' text-center text-white  text-lg font-bold '>Place Order</Text>
+                        <Text className=' text-center text-white  text-lg font-bold'
+                        onPress={()=>navigation.navigate('PreparingOrder')}>Place Order
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </View>

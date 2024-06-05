@@ -9,9 +9,14 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import Basket from './Basket';
 import { Pressable } from 'react-native';
+import PreparingOrder from './PreparingOrder';
+
+
 export type RootStackParamList = {
   Home: undefined;
-  Restaurant: { id: string }; // Add more screens and their params here
+  Restaurant: { id: string };
+  Basket: undefined;
+  PreparingOrder: undefined;
 };
 
 
@@ -42,6 +47,7 @@ const RootLayout: React.FC = () => {
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Restaurant' component={Restaurant} />
         <Stack.Screen name='Basket' component={Basket} options={{presentation:'modal', headerShown:false}}/>
+        <Stack.Screen name='PreparingOrder'component={PreparingOrder} options={{presentation:'fullScreenModal',headerShown:false}}/>
       </Stack.Navigator>
     </Provider>
     // </NavigationContainer>
