@@ -1,12 +1,18 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Animatable from 'react-native-animatable'
 import * as Progress from 'react-native-progress';
+import { useNavigation } from 'expo-router';
 
 const PreparingOrder:React.FC = () => {
+    const navigation = useNavigation()
 
-    
+   useEffect(()=>{
+    setTimeout(()=>{
+        navigation.navigate('Delivery')
+    },4000)
+   },[])
 
   return (
     <SafeAreaView className='bg-[#00CCBB] flex-1 justify-center items-center'>
@@ -22,8 +28,7 @@ const PreparingOrder:React.FC = () => {
         className=' text-lg my-10 text-white font-bold text-center'>
             Waiting for Restaurant to accept your order!
         </Animatable.Text>
-        
-        <Progress.Circle size={60} indeterminate={true} color='white'/>
+        <Progress.CircleSnail size={60} animating={true} progress={0.4} color='white' indeterminate={true}  indeterminateAnimationDuration={400}/>
     </SafeAreaView>
   )
 }

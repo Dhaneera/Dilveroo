@@ -30,17 +30,7 @@ export const restaurantSlice = createSlice({
     setRestaurant: (state,action:PayloadAction<Restaurants>)=> {
       state.restaurant =action.payload
     },
-    // removeFromBasket: (state,action:PayloadAction<BasketItem>) => {
-    //   const index = state.items.findIndex((item)=> item.id === action.payload.id)
-    //   let newBasket=[...state.items]
-    //   if (index>=0) {
-    //     newBasket.splice(index,1)
-    //   }else{
-    //     console.warn(`Cant remove product (id: ${action.payload.id}as its not in a basket`)
-    //   }
-    //   state.items = newBasket
-    // },
-    // Use the PayloadAction type to declare the contents of `action.payload`
+   
   }
 })
 
