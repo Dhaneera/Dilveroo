@@ -56,13 +56,12 @@ const Home:React.FC = () => {
         setReload(!reload)
     };
 
-    console.log(featuredCategories);
 
 
     return (
         <SafeAreaView className=' bg-white pt-5'>
             {/* viewstart */}
-            <View className=' flex-row items-center mx-4 space-x-2' >
+            <View className=' flex-row items-center mx-4 space-x-2 py-3 mb-2' >
                 {/* headerf */}
                 <Image source={{
                     uri: 'https://images.prismic.io/dbhq-deliveroo-riders-website/ed825791-0ba4-452c-b2cb-b5381067aad3_RW_hk_kit_importance.png?auto=compress,format&rect=0,0,1753,1816&w=1400&h=1450'
@@ -79,14 +78,7 @@ const Home:React.FC = () => {
                 <UserIcon size={30} color='#00CCBB' />
 
             </View>
-            {/* search */}
-            <View className=' flex-row items-center space-x-2 pb-2 mx-4'>
-                <View className=' flex-row flex-1 space-x-2 bg-gray-200 p-3'>
-                    <MagnifyingGlassIcon color='#00CCBB' />
-                    <TextInput placeholder=' Search Resturants and Cuisines'/>
-                </View>
-                <AdjustmentsVerticalIcon color='#00CCBB' />
-            </View>
+
             <ScrollView className=' bg-gray-100'
                 contentContainerStyle={{
                     paddingBottom: 100

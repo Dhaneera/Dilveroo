@@ -10,6 +10,17 @@ const Delivery: React.FC = () => {
 
     const navigation = useNavigation()
     const restaurant = useSelector(selectRestaurant)
+
+    if (restaurant) {
+        console.log('Restaurant Coordinates:', restaurant.lat, restaurant.long);
+    } else {
+        console.log('Restaurant data is not available.');
+    }
+ 
+
+    const defaultLatitude = 37.7749;  
+    const defaultLongitude = -122.4194;
+
     return (
         <View className='bg-[#00CCBB] flex-1'>
             <SafeAreaView className=' z-50'>
@@ -22,7 +33,8 @@ const Delivery: React.FC = () => {
                 <View className='bg-white mx-5 p-6 z-50 shadow-md my-2 py-8'>
                     <View className='flex-row justify-between'>
                         <View>
-                            <Text className=' text-lg text-gray-400'>Estimate Arrival</Text>
+                            <Text className='  text-gray-400'>Estimate Arrival</Text>
+                            <Text>{restaurant.id}</Text>
                             <Text className=' text-4xl font-bold'>45-55 minutes</Text>
                         </View>
 
@@ -37,21 +49,28 @@ const Delivery: React.FC = () => {
             </SafeAreaView>
 
             <MapView initialRegion={{
-                latitude: restaurant.lat,
-                longitude: restaurant.lng,
+                latitude: restaurant?.lat||defaultLatitude,
+                longitude: restaurant?.long||defaultLongitude,
                 latitudeDelta: 0.005,
                 longitudeDelta: 0.005,
             }}
                 className='flex-1 -mt-10 z-0'
-                mapType='mutedStandard'>
-                <Marker coordinate={{
-                    latitude: restaurant.lat,
-                    longitude: restaurant.long,
-                }}
-                    title={restaurant.title}
-                    description={restaurant.short_description}
-                    identifier='origin'
-                    pinColor='#00CCBB' />
+                mapType='mutedStandard'
+                onMapReady={()=> console.log('map redy')}
+                onRegionChangeComplete={(region)=>console.log('Region changed',region)}>
+                
+                {restaurant && (
+                     <Marker coordinate={{
+                        latitude: restaurant.lat,
+                        longitude: restaurant.long,
+                    }}
+                        title={restaurant.title}
+                        description={restaurant.short_description}
+                        identifier='origin'
+                        pinColor='#00CCBB' 
+                    />
+                )}
+               
             </MapView>
             <SafeAreaView className=' bg-white flex-row items-center space-x-5 h-28'>
                 <Image

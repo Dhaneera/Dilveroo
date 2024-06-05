@@ -37,7 +37,7 @@ const Categories: React.FC = () => {
   const triggerReload = () => {
     setReload(!reload)
   };
-  console.log(categorey);
+
 
 
   return (

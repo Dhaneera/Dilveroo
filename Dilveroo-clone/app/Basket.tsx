@@ -36,7 +36,7 @@ const Basket: React.FC = () => {
         setGroupItemsInBasket(groupedItems)
     }, [items])
 
-    console.log(groupedItemsInBasket);
+    
     
     return (
         <SafeAreaView className='flex-1 bg-white'>

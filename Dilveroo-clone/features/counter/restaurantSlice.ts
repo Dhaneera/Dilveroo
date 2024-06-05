@@ -4,36 +4,35 @@ import restaurant from '@/sanity/schemaTypes/restaurant';
 
 
 export interface RestaurantsState {
-    restaurant:any
-}
-interface Restaurants{
-    id: string
-    title?: string;
-    imgUrl?: string
-    rating?: number
-    genre: string
-    address: string
-    short_description: string
-    dishes: string[]
-
+    id: string;
+    title: string;
+    short_description: string;
+    lat: number;
+    long: number;
 }
 // Define the initial state using that type
 const initialState: RestaurantsState = {
-    restaurant
+    id: '',
+    title: '',
+    short_description: '',
+    lat: 0,
+    long: 0,
 }
 
 export const restaurantSlice = createSlice({
-  name: 'Restaurant',
+  name: 'resturant',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setRestaurant: (state,action:PayloadAction<Restaurants>)=> {
-      state.restaurant =action.payload
+    setRestaurant: (state,action:PayloadAction<RestaurantsState>)=> {
+      return action.payload
     },
-   
+    selectRestaurant:(state,action:PayloadAction<RestaurantsState>)=>{
+        return action.payload
+    }
   }
 })
 
 export const { setRestaurant } = restaurantSlice.actions
-export const selectRestaurant = (state:any)=>state.restaurant.restaurant
+export const selectRestaurant = (state:RootState)=>state.restaurant
 export default restaurantSlice.reducer

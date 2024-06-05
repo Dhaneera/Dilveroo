@@ -61,7 +61,7 @@ useLayoutEffect(() => {
 }, [])
 
 
-console.log(dishes);
+
 
 
   return (
