@@ -37,8 +37,8 @@ interface Restaurant {
     address: string;
     short_description: string;
     dishes: string[]
-    long: string;
-    lat: string;
+    long: number;
+    lat: number;
   }
   
 

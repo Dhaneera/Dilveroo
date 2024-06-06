@@ -28,7 +28,7 @@ const PreparingOrder:React.FC = () => {
         className=' text-lg my-10 text-white font-bold text-center'>
             Waiting for Restaurant to accept your order!
         </Animatable.Text>
-        <Progress.CircleSnail size={60} animating={true} progress={0.4} color='white' indeterminate={true}  indeterminateAnimationDuration={400}/>
+        <Progress.CircleSnail size={60} animating={true} progress={0.4} color='white' indeterminate={true}/>
     </SafeAreaView>
   )
 }

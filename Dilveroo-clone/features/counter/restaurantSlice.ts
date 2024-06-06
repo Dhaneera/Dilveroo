@@ -9,6 +9,11 @@ export interface RestaurantsState {
     short_description: string;
     lat: number;
     long: number;
+    imgUrl:string;
+    rating:number;
+    genre:string;
+    address:string;
+    dishes:any[]
 }
 // Define the initial state using that type
 const initialState: RestaurantsState = {
@@ -17,6 +22,11 @@ const initialState: RestaurantsState = {
     short_description: '',
     lat: 0,
     long: 0,
+    imgUrl:'',
+    rating:0,
+    genre:'',
+    address:'',
+    dishes:[]
 }
 
 export const restaurantSlice = createSlice({

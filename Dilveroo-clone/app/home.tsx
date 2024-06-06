@@ -84,7 +84,6 @@ const Home:React.FC = () => {
                     paddingBottom: 100
                 }}>
                 {/* categorey */}
-                <Categories />
                 {/* features */}
                 {featuredCategories.length > 0 ? (
                     featuredCategories.map(category => (

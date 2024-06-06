@@ -50,6 +50,8 @@ useEffect(()=>{
       address,
       short_description,
       dishes,
+      lat: 0,
+      long: 0
     })
   )
 },[dispatch])
